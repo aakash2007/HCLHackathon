@@ -1,0 +1,24 @@
+{
+  "name": "dhlchatbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kardeepak/HCLHackathon.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kardeepak/HCLHackathon/issues"
+  },
+  "homepage": "https://github.com/kardeepak/HCLHackathon#readme",
+  "dependencies": {
+    "botbuilder": "^3.8.4",
+    "express": "^4.15.3",
+    "restify": "^5.0.0"
+  }
+}
