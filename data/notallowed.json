@@ -1,0 +1,37 @@
+{
+	"allitems": ["alcohol", "samsung galaxy note7", "samsung note7", "gold","silver","precious metal","cash","legal tender","currency note", "coins", "cheques", "clinical samples", 
+			"biological samples", "firearms", "weapons", "firearms parts", "ammunation", "explosives", "explosive devices", "electronic cigarettes","furs","perfumes",
+			 "aftershave", "aerosols", "flammable substance", "dry ice", "deos", "deodrants", "human remians", "ashes", "animal parts", "illegal goods", "jewellery",
+			 "lithium battery", "lithium batteries", "lithium ion battery", "lithium ion batteries", "animals", "tobacco", "car parts", "engine parts"
+			],
+	"notallowed" :[
+		{
+			"name": "alcohol",
+			"description": "Alcohol – to other EU countries (sending alcohol within the UK is permitted). Shipments containing alcohol to destinations outside the EU may be subject to local restrictions"
+		},
+		{
+			"name": "samsung galaxy note7",
+			"description": ""
+		},
+		{
+			"name":"samsung note7",
+			"description": ""
+		},
+		{
+			"name": "antiques",
+			"description": "Antiques, works of art and fine art with an individual value in excess of £5,000"
+		},
+		{
+			"name": "gold",
+			"description":"No Precious Metals Allowed"
+		},
+		{
+			"name": "silver",
+			"description": "No Precious Metals Allowed"
+		},
+		{
+			"name": "cash",
+			"description": ""
+		}
+	]
+}
