@@ -34,7 +34,19 @@ module.exports = function(bot) {
     			session.endDialog()
 	    	}
     	}
-
-
-    ]);
-};
+    ])
+	.reloadAction(
+	    "restartlocationAvailability", "Ok. Let's start over.",
+	    {
+	        matches: /^start over$/i,
+	        confirmPrompt: "This wil cancel start over. Are you sure?"
+	    }
+	)
+	.cancelAction(
+	    "cancel", "Type 'Hi' to continue.", 
+	    {
+	        matches: /^cancel$/i,
+	        confirmPrompt: "This will cancel. Are you sure?"
+	    }
+	)
+}

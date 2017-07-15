@@ -18,6 +18,7 @@
   "homepage": "https://github.com/kardeepak/HCLHackathon#readme",
   "dependencies": {
     "botbuilder": "^3.8.4",
+    "dotenv-extended": "^2.0.1",
     "express": "^4.15.3",
     "restify": "^5.0.0"
   }

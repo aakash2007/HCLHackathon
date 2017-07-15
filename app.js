@@ -1,5 +1,6 @@
 const restify = require('restify');
 const builder = require('botbuilder');
+require('dotenv-extended').load();
 
 //require dialogs
 const dialog = {
@@ -19,11 +20,11 @@ const bot = new builder.UniversalBot(connector, {
     persistConversationData: true
 });
 
-var model = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/67f56d58-9a3e-49bc-83c6-7132fc485096?subscription-key=7928eebc0f3d43e58de298827a21b73f&timezoneOffset=0&verbose=true';
+// var model = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/67f56d58-9a3e-49bc-83c6-7132fc485096?subscription-key=7928eebc0f3d43e58de298827a21b73f&timezoneOffset=0&verbose=true';
 
 var intents = new builder.IntentDialog({
     recognizers: [
-        new builder.LuisRecognizer(model)
+        new builder.LuisRecognizer(process.env.LUIS_MODEL_URL)
     ],
     intentThreshold: 0.2,
     recognizeOrder: builder.RecognizeOrder.series
