@@ -18,7 +18,7 @@ module.exports = function(bot) {
 	    		session.userData.country = country
 	    		builder.Prompts.text(session, 'What is your city name?');
 	    	} else {
-		    	session.send('Sorry! we wil be available in your country soon')
+		    	session.send('Sorry! we will be available in your country soon')
 		    	session.endDialog()	    	
 		    }	
     	},
