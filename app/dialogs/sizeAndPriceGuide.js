@@ -7,19 +7,21 @@ const packaging = require('../../data/packaging.json')
 const findSuitablePackage = (l, b, h, cb) => {
 	let found = false
 	let name = 'not found'
-	
+	let anskey = 'not found'
+
 	let loop = (key, done) => {
 		let val = packaging[key];
 		
 		if(!found && val.l>=l && val.b >=b && val.h>=h) {
 			found = true
 			name = val.name
+			anskey = key
 		}
 		done()
 	} 
 
 	let doneLoop = () => {
-		cb(name)
+		cb(name, anskey)
 	}
 
 	async.each(Object.keys(packaging), loop, doneLoop)
@@ -49,14 +51,26 @@ module.exports = function(bot) {
 	    	let l = session.dialogData.length
 	    	let b = session.dialogData.breadth
 	    	let h = session.dialogData.height
-	    	findSuitablePackage(l, b, h, (suitablePackage) => {
+	    	findSuitablePackage(l, b, h, (suitablePackage, anskey) => {
+	    		session.dialogData.anskey = anskey
 	    		if(suitablePackage === 'not found') {
 		    		session.send('There is no suitable package for your parcel')
+		    		session.endDialog()
 		    	} else {
 		    		session.send('%s is suitable for your parcel', suitablePackage)
+					builder.Prompts.choice(session, "Which region?", "UK|EU|NONEU|US|REST", builder.ListStyle.button);
 		    	}
-		    	session.endDialog()
-	    	})
+    		})
+    	},
+    	function(session, results) {
+    		if(results.response){
+    			let anskey = session.dialogData.anskey
+    			let region = results.response.entity
+    			let data = packaging[anskey]
+    			data = data.price
+    			session.send("This costs %s euros", data[region])
+    		}
+    		session.endDialog();
     	}
     ]);
 };
