@@ -30,7 +30,7 @@ module.exports = function(bot) {
 				session.send('Yay! we are available in your city')
     			session.endDialog()
 	    	} else {
-	    		session.send('Sorry! we wil be available in your city soon')
+	    		session.send('Sorry! we will be available in your city soon')
     			session.endDialog()
 	    	}
     	}
@@ -39,7 +39,7 @@ module.exports = function(bot) {
 	    "restartlocationAvailability", "Ok. Let's start over.",
 	    {
 	        matches: /^start over$/i,
-	        confirmPrompt: "This wil cancel start over. Are you sure?"
+	        confirmPrompt: "This will cancel start over. Are you sure?"
 	    }
 	)
 	.cancelAction(
