@@ -67,5 +67,8 @@ server.listen(process.env.port || process.env.PORT || 3978, function () {
 // Listen for messages from users 
 server.post('/api/messages', connector.listen());
 
-
+server.get(/.*/, restify.serveStatic({
+    'directory': '.',
+    'default': 'index.html'
+}));
 
