@@ -32,10 +32,6 @@ var intents = new builder.IntentDialog({
     recognizeOrder: builder.RecognizeOrder.series
 });
 
-server.get(/.*/, restify.serveStatic({
-    'directory': '.',
-    'default': 'index.html'
-}));
 
 intents.matches('greet', '/greet');
 intents.matches('contactHuman', '/contactHuman');
@@ -72,4 +68,7 @@ server.listen(process.env.port || process.env.PORT || 3978, function () {
 // Listen for messages from users 
 server.post('/api/messages', connector.listen());
 
-
+server.get(/.*/, restify.plugins.serveStatic({
+    'directory': '.',
+    'default': 'index.html'
+}));
