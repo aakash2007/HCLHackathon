@@ -23,8 +23,8 @@ module.exports = function(bot) {
 	    		next()
 	    	} else {
 		    	session.dialogData.pic = results.response
-				builder.Prompts.text(session, "What is the receiver's address")
-    		}
+            }
+			builder.Prompts.text(session, "What is the receiver's address")
     	},
     	function(session, results) {
 	    	session.dialogData.address = results.response
@@ -41,5 +41,19 @@ module.exports = function(bot) {
 		    session.send(msg).endDialog();
 	    	// session.endDialog()
     	}
-    ]);
+    ])
+    .reloadAction(
+        "restart", "Ok. Let's start over.",
+        {
+            matches: /^start over$/i,
+            confirmPrompt: "This will start over. Are you sure?"
+        }
+    )
+    .cancelAction(
+        "cancel", "How can I help you.", 
+        {
+            matches: /^cancel$/i,
+            confirmPrompt: "This will cancel. Are you sure?"
+        }
+    )
 };

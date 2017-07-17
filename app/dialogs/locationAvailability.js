@@ -36,14 +36,14 @@ module.exports = function(bot) {
     	}
     ])
 	.reloadAction(
-	    "restartlocationAvailability", "Ok. Let's start over.",
+	    "restart", "Ok. Let's start over.",
 	    {
 	        matches: /^start over$/i,
-	        confirmPrompt: "This will cancel start over. Are you sure?"
+	        confirmPrompt: "This will start over. Are you sure?"
 	    }
 	)
 	.cancelAction(
-	    "cancel", "Type 'Hi' to continue.", 
+	    "cancel", "How can I help you.", 
 	    {
 	        matches: /^cancel$/i,
 	        confirmPrompt: "This will cancel. Are you sure?"
