@@ -8,8 +8,12 @@ module.exports = function(bot) {
         },
         function(session, results) {
         	session.dialogData.text = results.response
-        	builder.Prompts.confirm(session, "Do you want to send picture with it?");
+        	builder.Prompts.text(session, "What's the recipient's name?");
     	},
+        function(session, results) {
+            session.dialogData.name = results.response
+            builder.Prompts.confirm(session, "Do you want to send picture with it?");
+        },
         function(session, results, next) {
         	session.dialogData.sendPic = results.response
         	if(results.response) {
@@ -33,7 +37,7 @@ module.exports = function(bot) {
 		    msg.attachments([
 		        new builder.HeroCard(session)
 		            .title("Postcard")
-		            .subtitle("Address: %s", session.dialogData.address)
+		            .subtitle("Address: %s", session.dialogData.name + "," + session.dialogData.address)
 		            .text("Message: %s", session.dialogData.text)
 		            .images([builder.CardImage.create(session, session.dialogData.pic)])
 		         
