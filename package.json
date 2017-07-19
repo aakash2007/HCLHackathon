@@ -22,11 +22,7 @@
     "botbuilder": "^3.8.4",
     "dotenv-extended": "^2.0.1",
     "express": "^4.15.3",
-<<<<<<< HEAD
-    "restify": "^5.0.0"
-=======
     "restify": "^5.0.0",
     "xml2js": "^0.4.17"
->>>>>>> 46f8f5a45cd56da770e8542d3d4e3b96877a237d
   }
 }
