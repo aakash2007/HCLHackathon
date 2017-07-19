@@ -9,7 +9,8 @@ const dialog = {
     locationAvailability: require('./app/dialogs/locationAvailability'),
     trackOrder: require('./app/dialogs/trackOrder'),
     sizeAndPriceGuide: require('./app/dialogs/sizeAndPriceGuide'),
-    sendPost: require('./app/dialogs/sendPost')
+    sendPost: require('./app/dialogs/sendPost'),
+    convertCurrency: require('./app/dialogs/convertCurrency')
 };
 
 // Create chat connector for communicating with the Bot Framework Service
@@ -39,6 +40,7 @@ intents.matches('trackOrder', '/trackOrder');
 intents.matches('locationAvailability', '/locationAvailability');
 intents.matches('sizeAndPriceGuide', '/sizeAndPriceGuide')
 intents.matches('sendPost', '/sendPost')
+intents.matches('convertCurrency', '/convertCurrency')
 intents.onDefault('/confused');
 
 bot.dialog('/', intents);
@@ -48,6 +50,7 @@ dialog.trackOrder(bot);
 dialog.locationAvailability(bot, builder);
 dialog.sizeAndPriceGuide(bot);
 dialog.sendPost(bot);
+dialog.convertCurrency(bot);
 
 bot.dialog('/confused', [
     function (session, args, next) {
