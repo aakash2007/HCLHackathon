@@ -1,13 +1,9 @@
 const builder = require('botbuilder');
 const request = require('request');
 
-function getOrder(trackid, callback) {
+function getOrder(trackid) {
     var url = "http://www.dhl.co.in/shipmentTracking?AWB=" + trackid + "&countryCode=in&languageCode=en&_=1500382489026";
-    callback(url);
-    console.log(url);
-}
-
-mycallback = request({
+    equest({
         url: url,
         json: true
     }, function(err, res, body) {
@@ -17,6 +13,8 @@ mycallback = request({
             return body;
         }
     });
+    console.log(url);
+}
 
 module.exports = function(bot) {
     bot.dialog('/trackOrder', [
@@ -29,7 +27,7 @@ module.exports = function(bot) {
         	let trackid = results.response;
             session.userData.trackid = trackid;
             builder.Prompts.text(session,"Okay Let's See");
-            result = getOrder(trackid, mycallback).results[0];
+            result = getOrder(trackid).results[0];
 
             if (false) {
                 builder.Prompts.text(session,"Sorry, I'm not able to find the record with id " + trackid);
