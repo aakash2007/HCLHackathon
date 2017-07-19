@@ -16,17 +16,15 @@ module.exports = function(bot) {
         },
         function(session, results, next) {
         	session.dialogData.sendPic = results.response
-        	if(results.response) {
+            if(results.response) {
 	        	builder.Prompts.attachment(session, "Upload a picture for postcard.")
         	} else {
         		next()
         	}
     	},
     	function(session, results, next) {
-	    	if(!session.dialogData.sendPic) {
-	    		next()
-	    	} else {
-		    	session.dialogData.pic = results.response
+	    	if(session.dialogData.sendPic) {
+	    		session.dialogData.pic = results.response
             }
 			builder.Prompts.text(session, "What is the receiver's address")
     	},
