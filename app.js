@@ -10,7 +10,8 @@ const dialog = {
     trackOrder: require('./app/dialogs/trackOrder'),
     sizeAndPriceGuide: require('./app/dialogs/sizeAndPriceGuide'),
     sendPost: require('./app/dialogs/sendPost'),
-    convertCurrency: require('./app/dialogs/convertCurrency')
+    convertCurrency: require('./app/dialogs/convertCurrency'),
+    thankBack: require('./app/dialogs/thankBack')
 };
 
 // Create chat connector for communicating with the Bot Framework Service
@@ -34,14 +35,15 @@ var intents = new builder.IntentDialog({
 });
 
 
-intents.matches('greet', '/greet');
-intents.matches('contactHuman', '/contactHuman');
-intents.matches('trackOrder', '/trackOrder');
-intents.matches('locationAvailability', '/locationAvailability');
+intents.matches('greet', '/greet')
+intents.matches('contactHuman', '/contactHuman')
+intents.matches('trackOrder', '/trackOrder')
+intents.matches('locationAvailability', '/locationAvailability')
 intents.matches('sizeAndPriceGuide', '/sizeAndPriceGuide')
 intents.matches('sendPost', '/sendPost')
 intents.matches('convertCurrency', '/convertCurrency')
-intents.onDefault('/confused');
+intents.matches('thankBack', '/thankBack')
+intents.onDefault('/confused')
 
 bot.dialog('/', intents);
 dialog.greet(bot);
@@ -51,6 +53,7 @@ dialog.locationAvailability(bot, builder);
 dialog.sizeAndPriceGuide(bot);
 dialog.sendPost(bot);
 dialog.convertCurrency(bot);
+dialog.thankBack(bot);
 
 bot.dialog('/confused', [
     function (session, args, next) {
