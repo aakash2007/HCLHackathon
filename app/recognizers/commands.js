@@ -52,6 +52,14 @@ const parse = {
         intent: 'thankBack',
         score: 1
     }),
+    bye: () => ({
+        intent: 'bye',
+        score: 1
+    }),
+    showServices: () => ({
+        intent: 'showServices',
+        score: 1
+    }),
 };
 
 
