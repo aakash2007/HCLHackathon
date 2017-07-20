@@ -6,7 +6,7 @@ module.exports = function(bot) {
             session.send(['Hello!', 'Hi there!', 'Hi!']);
 
             if (!lastVisit) {
-                session.send('This is HCL bot');
+                session.send('DHL Chatbot at your Service');
                 session.userData = Object.assign({}, session.userData, {
                     lastVisit: new Date()
                 });
