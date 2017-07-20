@@ -13,7 +13,9 @@ const dialog = {
     sizeAndPriceGuide: require('./app/dialogs/sizeAndPriceGuide'),
     sendPost: require('./app/dialogs/sendPost'),
     convertCurrency: require('./app/dialogs/convertCurrency'),
-    thankBack: require('./app/dialogs/thankBack')
+    thankBack: require('./app/dialogs/thankBack'),
+    bye: require('./app/dialogs/bye'),
+    showServices: require('./app/dialogs/showServices')   
 };
 
 // Create chat connector for communicating with the Bot Framework Service
@@ -46,6 +48,8 @@ intents.matches('sizeAndPriceGuide', '/sizeAndPriceGuide')
 intents.matches('sendPost', '/sendPost')
 intents.matches('convertCurrency', '/convertCurrency')
 intents.matches('thankBack', '/thankBack')
+intents.matches('bye', '/bye')
+intents.matches('showServices', '/showServices')
 intents.onDefault('/confused')
 
 bot.dialog('/', intents);
@@ -57,6 +61,8 @@ dialog.sizeAndPriceGuide(bot);
 dialog.sendPost(bot);
 dialog.convertCurrency(bot);
 dialog.thankBack(bot);
+dialog.bye(bot);
+dialog.showServices(bot);
 
 bot.dialog('/confused', [
     function (session, args, next) {
