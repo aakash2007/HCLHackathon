@@ -2,6 +2,8 @@ const restify = require('restify');
 const builder = require('botbuilder');
 require('dotenv-extended').load();
 
+const commands = require('./app/recognizers/commands');
+
 //require dialogs
 const dialog = {
     greet: require('./app/dialogs/greet'),
@@ -28,6 +30,7 @@ const bot = new builder.UniversalBot(connector, {
 
 var intents = new builder.IntentDialog({
     recognizers: [
+        commands,
         new builder.LuisRecognizer(process.env.LUIS_MODEL_URL)
     ],
     intentThreshold: 0.2,
@@ -74,6 +77,7 @@ server.listen(process.env.port || process.env.PORT || 3978, function () {
 // Listen for messages from users 
 server.post('/api/messages', connector.listen());
 
+//get request for webchat
 server.get(/.*/, restify.plugins.serveStatic({
     'directory': '.',
     'default': 'index.html'
