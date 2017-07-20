@@ -60,6 +60,10 @@ const parse = {
         intent: 'showServices',
         score: 1
     }),
+    rateTimeQuote: () => ({
+        intent: 'rateTimeQuote',
+        score: 1
+    })
 };
 
 

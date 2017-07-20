@@ -15,7 +15,8 @@ const dialog = {
     convertCurrency: require('./app/dialogs/convertCurrency'),
     thankBack: require('./app/dialogs/thankBack'),
     bye: require('./app/dialogs/bye'),
-    showServices: require('./app/dialogs/showServices')   
+    showServices: require('./app/dialogs/showServices'),
+    rateTimeQuote: require('./app/dialogs/rateTimeQuote')   
 };
 
 // Create chat connector for communicating with the Bot Framework Service
@@ -50,6 +51,7 @@ intents.matches('convertCurrency', '/convertCurrency')
 intents.matches('thankBack', '/thankBack')
 intents.matches('bye', '/bye')
 intents.matches('showServices', '/showServices')
+intents.matches('rateTimeQuote', '/rateTimeQuote')
 intents.onDefault('/confused')
 
 bot.dialog('/', intents);
@@ -63,6 +65,7 @@ dialog.convertCurrency(bot);
 dialog.thankBack(bot);
 dialog.bye(bot);
 dialog.showServices(bot);
+dialog.rateTimeQuote(bot);
 
 bot.dialog('/confused', [
     function (session, args, next) {
