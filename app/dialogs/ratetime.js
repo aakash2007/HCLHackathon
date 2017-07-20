@@ -3,7 +3,7 @@ const http = require('http');
 const qs = require('querystring');
 const xml2js = require('xml2js');
 
-const cntryCd = require('../data/countryCode.json');
+const cntryCd = require('../../data/countryCode.json');
 const len = cntryCd.length;
 
 function getRate(options, callback) {
@@ -30,7 +30,7 @@ const lntCh = ["cm", "in"];
 
 
 module.exports = function(bot) {
-	bot.dialog('/ratetime', [
+	bot.dialog('/rateTimeQuote', [
 
 			function(session, args, next) {
 				session.send("DHL Capability Tool");
@@ -39,7 +39,7 @@ module.exports = function(bot) {
 			function(session, results) {
 				var orgCtry = results.response
 				var found = false;
-				for ( var i=0,; i<len; i++) {
+				for ( var i=0; i<len; i++) {
 					
 					if(cntryCd[i]["Code"] == orgCtry){
 						found = true;
@@ -52,25 +52,32 @@ module.exports = function(bot) {
 				}
 				builder.Prompts.text(session, "What's the Destination Country Code? (like IN, US, AF)")
 			},
-			function(session, results) {
+			function(session, results, next) {
 				var dstCtry = results.response
-				var found = false;
-				for ( var i=0,; i<len; i++) {
+				session.dialogData.found = false;
+				for ( var i=0; i<len; i++) {
 					
 					if(cntryCd[i]["Code"] == dstCtry){
-						found = true;
+						session.dialogData.found = true;
 						session.dialogData.dstCtry = dstCtry;
 						session.send("Destination Country: " + cntryCd[i]["Name"])
 					}
 				}
-				if (!found) {
-					session.end();			// Enter here for dialog reset
+				if (session.dialogData.found == false) {
+					//session.end();			// Enter here for dialog reset
+					next()
 				}
-				session.Prompts.number(session, "Origin City Pin Code?")
+				else {
+					next()
+				}
+			},
+			function(session, results) {
+				session.Prompts.number(session, "Origin City Pin Code?");
 			},
 			function(session, results) {
 				let orgZip = results.response;
 				session.dialogData.orgZip = orgZip;
+				session.send("okay")
 				session.Prompts.number(session, "Destination City Pin Code?");
 			},
 			function(session, results) {
@@ -80,6 +87,7 @@ module.exports = function(bot) {
 			},
 			function(session, results) {
 				let shpDate = results.response;
+				session.dialogData.shpDate = shpDate;
 				session.Prompts.confirm(session, "Is it a Dutiable Material?");
 			},
 			function(session, results, next) {
@@ -125,28 +133,34 @@ module.exports = function(bot) {
 			},
 			function(session, results) {
 				session.dialogData.h0 = results.response;
+				var obj = {
+						dtbl:session.dialogData.dtbl,
+						declVal:session.dialogData.declVal,
+						declValCur:session.dialogData.declValCur,
+						wgtUom:session.dialogData.wgtUom,
+						dimUom:session.dialogData.dimUom,
+						noPce:1,
+						wgt0:session.dialogData.wgt0,
+						w0:session.dialogData.w0,
+						l0:session.dialogData.l0,
+						h0:session.dialogData.h0,
+						shpDate:session.dialogData.shpDate,
+						orgCtry:session.dialogData.orgCtry,
+						orgZip:session.dialogData.orgZip,
+						dstCtry:session.dialogData.dstCtry,
+						dstZip:session.dialogData.dstZip
+					}
+				 getRate(obj, (x) => {
+					if (x) {
+						console.log(x.quotationResponse.count[0])
+						qtcount = x.quotationResponse.count[0];
+						session.send("I found " + qtcount + " results for your query");
+					}
+					else {
+						console.log("An error");
+					}
+				})
 			}
 
 		]);
 };
-
-
-var obj = {
-dtbl:"Y",
-declVal:10,
-declValCur:"INR",
-wgtUom:"kg",
-dimUom:"cm",
-noPce:1,
-wgt0:1,
-w0:15,
-l0:15,
-h0:15,
-shpDate:"2017-07-28",
-orgCtry:"IN",
-orgCity:"JAIPUR",
-orgZip:302001,
-dstCtry:"US",
-dstCity:"NEW YORK",
-dstZip:10000
-}
