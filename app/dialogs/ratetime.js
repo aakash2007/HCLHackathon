@@ -155,8 +155,32 @@ module.exports = function(bot) {
 						console.log(x.quotationResponse.count[0])
 						qtcount = x.quotationResponse.count[0];
 						session.send("I found " + qtcount + " results for your query");
+						if (qtcount == 0) {
+							session.send("Oops!\n\nError: " + x.quotationResponse.errorMessage[0]);
+						}
+						else {
+							for(var i=0; i<qtcount; i++) {
+								qtdata = x.quotationResponse.quotationList[0].quotation[i];
+								var res_str = "";
+								var prodname = "\n\n" + qtdata.prodNm[0];
+								var est_del = "\n\nEstimated Delivery: " + qtdata.estDelv[0];
+								var lat_bkg = "\n\nLatest Booking: " + qtdata.latBkg[0];
+								var lat_pick = "\n\nLatest Pickup: " + qtdata.latPckp[0];
+								var est_prc = "\n\nEstimated Total Price: ";
+								if (qtdata.displayPrices[0] == "Y") {
+									est_prc = est_prc + qtdata.estTotPrice[0];
+								}
+								else {
+									est_prc = est_prc + "NOT AVAILABLE";
+								}
+
+								res_str = res_str + prodname + est_del + lat_bkg + lat_pick + est_prc;
+								session.send(res_str);
+							}
+						}
 					}
 					else {
+						session.send("I am not able to retrive the information. \n\nSorry for the inconvenience.")
 						console.log("An error");
 					}
 				})
