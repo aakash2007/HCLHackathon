@@ -4,14 +4,14 @@ module.exports = function(bot) {
     bot.dialog('/sendPost', [
         function (session, args, next) {
             session.send("Let's get your post card ready");
-        	builder.Prompts.text(session, "Type message for the postcard")
+            builder.Prompts.text(session, "What's the recipient's name?");
         },
         function(session, results) {
-        	session.dialogData.text = results.response
-        	builder.Prompts.text(session, "What's the recipient's name?");
+        	session.dialogData.name = results.response
+        	builder.Prompts.text(session, "Type a message for " + session.dialogData.name.split(" ")[0]);
     	},
         function(session, results) {
-            session.dialogData.name = results.response
+            session.dialogData.text = results.response
             builder.Prompts.confirm(session, "Do you want to send picture with it?");
         },
         function(session, results, next) {
@@ -26,7 +26,7 @@ module.exports = function(bot) {
 	    	if(session.dialogData.sendPic) {
 	    		session.dialogData.pic = results.response
             }
-			builder.Prompts.text(session, "What is the receiver's address")
+			builder.Prompts.text(session, "What is "+ session.dialogData.name.split(" ")[0] + "'s address?")
     	},
         function(session, results) {
             session.dialogData.address = results.response;
