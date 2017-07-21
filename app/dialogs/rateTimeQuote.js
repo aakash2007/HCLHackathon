@@ -48,7 +48,9 @@ module.exports = function(bot) {
 					}
 				}
 				if (!found) {
-					session.end();			// Enter here for dialog reset
+					session.send('Sorry! this is not a valid country code')
+					session.endDialog()
+					// Enter here for dialog reset
 				}
 				builder.Prompts.text(session, "What's the Destination Country Code? (like IN, US, AF)")
 			},
@@ -63,7 +65,7 @@ module.exports = function(bot) {
 					}
 				}) 
 				if (!found) {
-					session.send('Sorry! this is not a avalid country code')
+					session.send('Sorry! this is not a valid country code')
 					session.endDialog()
 				}
 				else {
@@ -73,7 +75,6 @@ module.exports = function(bot) {
 			function(session, results) {
 				let orgZip = results.response;
 				session.dialogData.orgZip = orgZip;
-				session.send("okay")
 				builder.Prompts.number(session, "Destination City Pin Code?");
 			},
 			function(session, results) {
@@ -111,24 +112,25 @@ module.exports = function(bot) {
 				builder.Prompts.number(session, "Enter Weight (in " + session.dialogData.wgtUom + ")");
 			},
 			function(session, results) {
-				session.dialogData.declVal = results.response;
+				session.dialogData.wgt0 = results.response;
 				builder.Prompts.choice(session, "Unit for lengths", lntCh);	
 			},
 			function(session, results) {
 				session.dialogData.dimUom = results.response.entity;
 				session.send("Okay. Got It. Now enter the dimensions in " + session.dialogData.dimUom);
-				builder.Prompts.number("Length");
+				builder.Prompts.number(session,"Length");
 			},
 			function(session, results) {
 				session.dialogData.l0 = results.response;
-				builder.Prompts.number("Width");
+				builder.Prompts.number(session,"Width");
 			},
 			function(session, results) {
 				session.dialogData.w0 = results.response;
-				builder.Prompts.number("Height");
+				builder.Prompts.number(session,"Height");
 			},
 			function(session, results) {
 				session.dialogData.h0 = results.response;
+				session.send("That's Great! \n\nNow let me see...");
 				var obj = {
 						dtbl:session.dialogData.dtbl,
 						declVal:session.dialogData.declVal,
@@ -146,6 +148,7 @@ module.exports = function(bot) {
 						dstCtry:session.dialogData.dstCtry,
 						dstZip:session.dialogData.dstZip
 					}
+				console.log(obj);
 				 getRate(obj, (x) => {
 					if (x) {
 						console.log(x.quotationResponse.count[0])
@@ -159,7 +162,7 @@ module.exports = function(bot) {
 								qtdata = x.quotationResponse.quotationList[0].quotation[i];
 								var res_str = "";
 								var prodname = "\n\n" + qtdata.prodNm[0];
-								var est_del = "\n\nEstimated Delivery: " + qtdata.estDelv[0];
+								var est_del = "\n\nEstimated Delivery: " + qtdata.estDeliv[0];
 								var lat_bkg = "\n\nLatest Booking: " + qtdata.latBkg[0];
 								var lat_pick = "\n\nLatest Pickup: " + qtdata.latPckp[0];
 								var est_prc = "\n\nEstimated Total Price: ";
