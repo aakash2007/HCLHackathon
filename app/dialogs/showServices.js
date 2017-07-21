@@ -8,6 +8,7 @@ module.exports = function(bot) {
             session.send("* **Size and Price Guide:** Find a suitable box for your parcel without any delay\n\nJust ask: *Find a suitable package* or *Which box will I need*");
             session.send("* **Check Location Availability:** Check if DHL operates in your city or not.\n\nTry: *Is DHL available in my city* or *Do you ship here*");
             session.send("* **Convert Currency:** Realtime currency conversion\n\nStart it by: *Convert currency*");
+            session.send("During any function, you can use hotwords: **cancel** or **restart** to control your conversation.");
             session.endDialog()
         }
     ]);
