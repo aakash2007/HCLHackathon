@@ -36,7 +36,7 @@ module.exports = function(bot) {
 	    	session.dialogData.pinCd = results.response
             session.send("Okay! We will get it delivered to " + session.dialogData.name.split(" ")[0]);
             session.send("\n\nAddress: " + session.dialogData.address + " " + session.dialogData.pinCd + "\n\n" + "\n\n" + session.dialogData.text);
-	    	// session.endDialog()
+	    	session.endDialog()
     	}
     ])
     .reloadAction(

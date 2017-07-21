@@ -74,7 +74,6 @@ const parse = {
 module.exports = {
     recognize: function (context, callback) {
         const text = context.message.text;
-        console.log('starts with ^', text.startsWith('^'))
         if(text.startsWith('/')||text.startsWith('@')) {
             callback.call(null, null, {
                 intent: 'platformFix',
@@ -82,10 +81,8 @@ module.exports = {
         })
         }
         else if (!text.startsWith('^')) {
-            console.log('returning')
             callback.call(null, null, unrecognized);
         } else {
-            
             callback.call(null, null, parse.parse(context, text));
         }
     }
