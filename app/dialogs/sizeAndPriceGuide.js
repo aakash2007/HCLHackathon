@@ -42,21 +42,22 @@ module.exports = function(bot) {
 
     	function(session, results) {
 	        session.dialogData.breadth = results.response
-	    	builder.Prompts.number(session, 'Finally, What is the height of parcel (in cms)?');
+	    	builder.Prompts.number(session, "Finally, What's the height of parcel (in cms)?");
     	},
 
       	function(session, results) {
 	    	session.dialogData.height = results.response
+	    	session.send("Okay. Let me see...");
 	    	let l = session.dialogData.length
 	    	let b = session.dialogData.breadth
 	    	let h = session.dialogData.height
 	    	findSuitablePackage(l, b, h, (suitablePackage, anskey) => {
 	    		session.dialogData.anskey = anskey
 	    		if(suitablePackage === 'not found') {
-		    		session.send('There is no suitable package for your parcel')
+		    		session.send('Sorry, I was unable to find a suitable package for your parcel')
 		    		session.endDialog()
 		    	} else {
-		    		session.send('%s is suitable for your parcel', suitablePackage)
+		    		session.send('**%s** is suitable for your parcel', suitablePackage)
 					builder.Prompts.choice(session, "Which region?", "UK|EU|NONEU|US|REST", builder.ListStyle.button);
 		    	}
     		})
