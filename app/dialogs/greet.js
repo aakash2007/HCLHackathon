@@ -15,7 +15,9 @@ module.exports = function(bot) {
                 session.send('Glad you\'re back!');
             }
 
-            session.endDialog('How can I help you?');
+            session.send("How can I help you?")
+            session.endDialog("You can ask me *What can you do* to get a list of my capabilities.");
+
         }
     ]);
 };
