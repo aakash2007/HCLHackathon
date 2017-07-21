@@ -3,7 +3,7 @@ const builder = require('botbuilder')
 module.exports = function(bot) {
     bot.dialog('/sendPost', [
         function (session, args, next) {
-            session.send('This is sendPost')
+            session.send("Let's get your post card ready");
         	builder.Prompts.text(session, "Type message for the postcard")
         },
         function(session, results) {
@@ -28,19 +28,14 @@ module.exports = function(bot) {
             }
 			builder.Prompts.text(session, "What is the receiver's address")
     	},
+        function(session, results) {
+            session.dialogData.address = results.response;
+            builder.Prompts.number(session,"What's the receiver's pin code?")
+        },
     	function(session, results) {
-	    	session.dialogData.address = results.response
-		 	let msg = new builder.Message(session);
-		    msg.attachmentLayout(builder.AttachmentLayout.carousel)
-		    msg.attachments([
-		        new builder.HeroCard(session)
-		            .title("Postcard")
-		            .subtitle("Address: %s", session.dialogData.name + "," + session.dialogData.address)
-		            .text("Message: %s", session.dialogData.text)
-		            .images([builder.CardImage.create(session, session.dialogData.pic)])
-		         
-		    ])
-		    session.send(msg).endDialog();
+	    	session.dialogData.pinCd = results.response
+            session.send("Okay! We will get it delivered to " + session.dialogData.name.split(" ")[0]);
+            session.send("\n\nAddress: " + session.dialogData.address + " " + session.dialogData.pinCd + "\n\n" + "\n\n" + session.dialogData.text);
 	    	// session.endDialog()
     	}
     ])
