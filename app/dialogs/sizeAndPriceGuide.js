@@ -32,18 +32,17 @@ module.exports = function(bot) {
     bot.dialog('/sizeAndPriceGuide', [
         
         function (session, args, next) {
-        	session.send('This is sizeAndPriceGuide')
-    		builder.Prompts.number(session, 'Enter the length of parcel in cms?');
+    		builder.Prompts.number(session, 'What is the length of parcel (in cms)?');
         },
 
         function(session, results) {
         	session.dialogData.length = results.response
-        	builder.Prompts.number(session, 'Enter the breadth of parcel in cms?');
+        	builder.Prompts.number(session, 'Enter the breadth of parcel (in cms)');
     	},
 
     	function(session, results) {
 	        session.dialogData.breadth = results.response
-	    	builder.Prompts.number(session, 'Enter the height of parcel in cms?');
+	    	builder.Prompts.number(session, 'Finally, What is the height of parcel (in cms)?');
     	},
 
       	function(session, results) {
