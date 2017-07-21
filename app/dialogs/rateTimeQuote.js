@@ -54,47 +54,43 @@ module.exports = function(bot) {
 			},
 			function(session, results, next) {
 				var dstCtry = results.response
-				session.dialogData.found = false;
-				for ( var i=0; i<len; i++) {
-					
-					if(cntryCd[i]["Code"] == dstCtry){
-						session.dialogData.found = true;
+				let found = false;
+				cntryCd.forEach((country) => {
+					if(country["Code"] == dstCtry){
+						found = true;
 						session.dialogData.dstCtry = dstCtry;
-						session.send("Destination Country: " + cntryCd[i]["Name"])
+						session.send("Destination Country: " + country["Name"])
 					}
-				}
-				if (session.dialogData.found == false) {
-					//session.end();			// Enter here for dialog reset
-					next()
+				}) 
+				if (!found) {
+					session.send('Sorry! this is not a avalid country code')
+					session.endDialog()
 				}
 				else {
-					next()
+					builder.Prompts.number(session, "Origin City Pin Code?");
 				}
-			},
-			function(session, results) {
-				session.Prompts.number(session, "Origin City Pin Code?");
 			},
 			function(session, results) {
 				let orgZip = results.response;
 				session.dialogData.orgZip = orgZip;
 				session.send("okay")
-				session.Prompts.number(session, "Destination City Pin Code?");
+				builder.Prompts.number(session, "Destination City Pin Code?");
 			},
 			function(session, results) {
 				let dstZip = results.response;
 				session.dialogData.dstZip = dstZip;
-				session.Prompts.text(session,"When do you want to ship it? (Enter Date in yyyy-mm-dd format)");
+				builder.Prompts.text(session,"When do you want to ship it? (Enter Date in yyyy-mm-dd format)");
 			},
 			function(session, results) {
 				let shpDate = results.response;
 				session.dialogData.shpDate = shpDate;
-				session.Prompts.confirm(session, "Is it a Dutiable Material?");
+				builder.Prompts.confirm(session, "Is it a Dutiable Material?");
 			},
 			function(session, results, next) {
 				let dtbl = results.response;
 				if(dtbl) {
 					session.dialogData.dtbl = "Y";
-					session.Prompts.number(session,"Enter Decalred Value (in USD)");
+					builder.Prompts.number(session,"Enter Decalred Value (in USD)");
 				}
 				else {
 					session.dialogData.dtbl = "N";
@@ -108,28 +104,28 @@ module.exports = function(bot) {
 				}
 				session.send("Tell me the dimensions of your parcel");
 				session.send("Let's first decide the units");
-				session.Prompts.choice(session, "Unit for weight", wgtCh);
+				builder.Prompts.choice(session, "Unit for weight", wgtCh);
 			},
 			function(session, results) {
 				session.dialogData.wgtUom = results.response.entity;
-				session.Prompts.number(session, "Enter Weight (in " + session.dialogData.wgtUom + ")");
+				builder.Prompts.number(session, "Enter Weight (in " + session.dialogData.wgtUom + ")");
 			},
 			function(session, results) {
 				session.dialogData.declVal = results.response;
-				session.Prompts.choice(session, "Unit for lengths", lntCh);	
+				builder.Prompts.choice(session, "Unit for lengths", lntCh);	
 			},
 			function(session, results) {
 				session.dialogData.dimUom = results.response.entity;
 				session.send("Okay. Got It. Now enter the dimensions in " + session.dialogData.dimUom);
-				session.Prompts.number("Length");
+				builder.Prompts.number("Length");
 			},
 			function(session, results) {
 				session.dialogData.l0 = results.response;
-				session.Prompts.number("Width");
+				builder.Prompts.number("Width");
 			},
 			function(session, results) {
 				session.dialogData.w0 = results.response;
-				session.Prompts.number("Height");
+				builder.Prompts.number("Height");
 			},
 			function(session, results) {
 				session.dialogData.h0 = results.response;
