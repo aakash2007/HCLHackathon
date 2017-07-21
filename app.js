@@ -16,7 +16,7 @@ const dialog = {
     thankBack: require('./app/dialogs/thankBack'),
     bye: require('./app/dialogs/bye'),
     showServices: require('./app/dialogs/showServices'),
-    rateTimeQuote: require('./app/dialogs/ratetime')   
+    rateTimeQuote: require('./app/dialogs/rateTimeQuote')   
 };
 
 // Create chat connector for communicating with the Bot Framework Service
