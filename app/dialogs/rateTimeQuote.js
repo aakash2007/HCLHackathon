@@ -4,7 +4,9 @@ const qs = require('querystring');
 const xml2js = require('xml2js');
 
 const cntryCd = require('../../data/countryCode.json');
-const len = cntryCd.length;
+const codes = cntryCd.map((country) => {
+	return country.Code
+})
 
 function getRate(options, callback) {
 	var url = "http://dct.dhl.com/data/quotation/?" + qs.stringify(options);
@@ -37,39 +39,25 @@ module.exports = function(bot) {
 				builder.Prompts.text(session, "What's the Origin Country Code? (like IN, US, AF)");
 			},
 			function(session, results) {
-				var orgCtry = results.response.toUpperCase()
-				var found = false;
-				for ( var i=0; i<len; i++) {
-					
-					if(cntryCd[i]["Code"] == orgCtry){
-						found = true;
-						session.dialogData.orgCtry = orgCtry;
-						session.send("Origin Country: " + cntryCd[i]["Name"])
-					}
-				}
-				if (!found) {
-					session.send('Sorry! this is not a valid country code')
-					session.endDialog()
-					// Enter here for dialog reset
-				}
-				builder.Prompts.text(session, "What's the Destination Country Code? (like IN, US, AF)")
-			},
-			function(session, results, next) {
-				var dstCtry = results.response.toUpperCase()
-				let found = false;
-				cntryCd.forEach((country) => {
-					if(country["Code"] == dstCtry){
-						found = true;
-						session.dialogData.dstCtry = dstCtry;
-						session.send("Destination Country: " + country["Name"])
-					}
-				}) 
-				if (!found) {
-					session.send('Sorry! this is not a valid country code')
-					session.endDialog()
+				let orgCtry = results.response.toUpperCase()
+				if(codes.includes(orgCtry)) {
+					session.dialogData.orgCtry = orgCtry
+					builder.Prompts.text(session, "What's the Destination Country Code? (like IN, US, AF)")
 				}
 				else {
+					session.send('Sorry! this is not a valid country code')
+					session.endDialog()
+				}
+			},
+			function(session, results, next) {
+				var dstCtry = results.response .toUpperCase()
+				if (codes.includes(dstCtry)) {
+					session.dialogData.dstCtry = dstCtry
 					builder.Prompts.number(session, "Origin City Pin Code?");
+				}
+				else {
+					session.send('Sorry! this is not a valid country code')
+					session.endDialog()
 				}
 			},
 			function(session, results) {
