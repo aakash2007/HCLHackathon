@@ -16,12 +16,13 @@ const findSuitablePackage = (l, b, h, cb) => {
 			found = true
 			name = val.name
 			anskey = key
+			img = val.imglink
 		}
 		done()
 	} 
 
 	let doneLoop = () => {
-		cb(name, anskey)
+		cb(name, anskey, img);
 	}
 
 	async.each(Object.keys(packaging), loop, doneLoop)
@@ -51,13 +52,14 @@ module.exports = function(bot) {
 	    	let l = session.dialogData.length
 	    	let b = session.dialogData.breadth
 	    	let h = session.dialogData.height
-	    	findSuitablePackage(l, b, h, (suitablePackage, anskey) => {
+	    	findSuitablePackage(l, b, h, (suitablePackage, anskey, imglk) => {
 	    		session.dialogData.anskey = anskey
 	    		if(suitablePackage === 'not found') {
 		    		session.send('Sorry, I was unable to find a suitable package for your parcel')
 		    		session.endDialog()
 		    	} else {
-		    		session.send('**%s** is suitable for your parcel', suitablePackage)
+		    		session.send('**%s** is suitable for your parcel', suitablePackage);
+		    		session.send("![%s](%s)", suitablePackage,imglk);
 					builder.Prompts.choice(session, "Which region?", "UK|EU|NONEU|US|REST", builder.ListStyle.button);
 		    	}
     		})

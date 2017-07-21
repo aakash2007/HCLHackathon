@@ -10,7 +10,8 @@
 			"NONEU": "28.95",
 			"US": "30.95",
 			"REST": "38.95"
-		}
+		},
+		"imglink": "https://parcel.dhl.co.uk/repository/package_size/dhl_envelope_1_carousel_NEW.jpg"
 	},
 	"box2": {
 		"name": "Box 2",
@@ -23,7 +24,8 @@
 			"NONEU": "36.95",
 			"US": "37.95",
 			"REST": "49.95"
-		}
+		},
+		"imglink":"https://parcel.dhl.co.uk/repository/package_size/dhl_box_size_2_carousel_NEW.jpg"
 	},
 	"box3": {
 		"name": "Box 3",
@@ -36,7 +38,8 @@
 			"NONEU": "39.95",
 			"US": "40.95",
 			"REST": "57.95"
-		}
+		},
+		"imglink":"https://parcel.dhl.co.uk/repository/package_size/dhl_box_size_3_carousel_NEW.jpg"
 	},
 	"box4": {
 		"name": "Box 4",
@@ -49,7 +52,8 @@
 			"NONEU": "49.95",
 			"US": "55.95",
 			"REST": "78.95"
-		}
+		},
+		"imglink":"https://parcel.dhl.co.uk/repository/package_size/dhl_box_size_4_carousel_NEW.jpg"
 	},
 	"box5": {
 		"name": "Box 5",
@@ -62,7 +66,8 @@
 			"NONEU": "79.95",
 			"US": "89.95",
 			"REST": "138.95"
-		}
+		},
+		"imglink":"https://parcel.dhl.co.uk/repository/package_size/dhl_box_size_5_carousel_NEW.jpg"
 	},
 	"box6": {
 		"name": "Box 6",
@@ -75,7 +80,8 @@
 			"NONEU": "104.95",
 			"US": "109.95",
 			"REST": "172.95"
-		}
+		},
+		"imglink":"https://parcel.dhl.co.uk/repository/package_size/dhl_box_size_6_carousel_NEW.jpg"
 	},
 	"box7": {
 		"name": "Box 7",
@@ -88,6 +94,7 @@
 			"NONEU": "119.95",
 			"US": "125.95",
 			"REST": "199.95"
-		}
+		},
+		"imglink":"https://parcel.dhl.co.uk/repository/package_size/dhl_box_size_7_carousel_NEW.jpg"
 	}
 }
