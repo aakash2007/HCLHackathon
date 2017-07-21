@@ -16,7 +16,9 @@ const dialog = {
     thankBack: require('./app/dialogs/thankBack'),
     bye: require('./app/dialogs/bye'),
     showServices: require('./app/dialogs/showServices'),
-    rateTimeQuote: require('./app/dialogs/rateTimeQuote')   
+    rateTimeQuote: require('./app/dialogs/rateTimeQuote'),
+    platformFix: require('./app/dialogs/platformFix')   
+
 };
 
 // Create chat connector for communicating with the Bot Framework Service
@@ -52,6 +54,7 @@ intents.matches('thankBack', '/thankBack')
 intents.matches('bye', '/bye')
 intents.matches('showServices', '/showServices')
 intents.matches('rateTimeQuote', '/rateTimeQuote')
+intents.matches('platformFix', '/platformFix')
 intents.onDefault('/confused')
 
 bot.dialog('/', intents);
@@ -66,6 +69,7 @@ dialog.thankBack(bot);
 dialog.bye(bot);
 dialog.showServices(bot);
 dialog.rateTimeQuote(bot);
+dialog.platformFix(bot);
 
 bot.dialog('/confused', [
     function (session, args, next) {
@@ -91,3 +95,4 @@ server.get(/.*/, restify.plugins.serveStatic({
     'directory': '.',
     'default': 'index.html'
 }));
+                                                                                                                                                                                                                        

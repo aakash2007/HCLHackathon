@@ -63,6 +63,10 @@ const parse = {
     rateTimeQuote: () => ({
         intent: 'rateTimeQuote',
         score: 1
+    }),
+    platformFix: () => ({
+        intent: 'platformFix',
+        score: 1
     })
 };
 
@@ -70,7 +74,15 @@ const parse = {
 module.exports = {
     recognize: function (context, callback) {
         const text = context.message.text;
-        if (!text.startsWith('^')) {
+        console.log('starts with ^', text.startsWith('^'))
+        if(text.startsWith('/')||text.startsWith('@')) {
+            callback.call(null, null, {
+                intent: 'platformFix',
+                score: 1
+        })
+        }
+        else if (!text.startsWith('^')) {
+            console.log('returning')
             callback.call(null, null, unrecognized);
         } else {
             
