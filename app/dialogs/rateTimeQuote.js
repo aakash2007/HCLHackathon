@@ -37,7 +37,7 @@ module.exports = function(bot) {
 				builder.Prompts.text(session, "What's the Origin Country Code? (like IN, US, AF)");
 			},
 			function(session, results) {
-				var orgCtry = results.response
+				var orgCtry = results.response.toUpperCase()
 				var found = false;
 				for ( var i=0; i<len; i++) {
 					
@@ -55,7 +55,7 @@ module.exports = function(bot) {
 				builder.Prompts.text(session, "What's the Destination Country Code? (like IN, US, AF)")
 			},
 			function(session, results, next) {
-				var dstCtry = results.response
+				var dstCtry = results.response.toUpperCase()
 				let found = false;
 				cntryCd.forEach((country) => {
 					if(country["Code"] == dstCtry){
