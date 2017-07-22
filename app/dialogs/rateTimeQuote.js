@@ -119,6 +119,7 @@ module.exports = function(bot) {
 			function(session, results) {
 				session.dialogData.h0 = results.response;
 				session.send("That's Great! \n\nNow let me see...");
+				session.sendTyping();
 				var obj = {
 						dtbl:session.dialogData.dtbl,
 						declVal:session.dialogData.declVal,

@@ -24,6 +24,7 @@ module.exports = function(bot) {
         function(session, results){
             let trackid = results.response;
             session.dialogData.trackid = trackid;
+            session.sendTyping();
             getOrder(trackid, (x) => {
                 
                 if (x) {

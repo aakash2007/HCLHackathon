@@ -49,6 +49,7 @@ module.exports = function(bot) {
       	function(session, results) {
 	    	session.dialogData.height = results.response
 	    	session.send("Okay. Let me see...");
+	    	session.sendTyping();
 	    	let l = session.dialogData.length
 	    	let b = session.dialogData.breadth
 	    	let h = session.dialogData.height
