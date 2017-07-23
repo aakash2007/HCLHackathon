@@ -137,10 +137,8 @@ module.exports = function(bot) {
 						dstCtry:session.dialogData.dstCtry,
 						dstZip:session.dialogData.dstZip
 					}
-				console.log(obj);
 				 getRate(obj, (x) => {
 					if (x) {
-						console.log(x.quotationResponse.count[0])
 						qtcount = x.quotationResponse.count[0];
 						session.send("I found " + qtcount + " results for your query");
 						if (qtcount == 0) {
@@ -169,9 +167,10 @@ module.exports = function(bot) {
 					}
 					else {
 						session.send("I am not able to retrive the information. \n\nSorry for the inconvenience.")
-						console.log("An error");
+						session.endDialog();
 					}
 				})
+			session.endDialog();
 			}
 
 		])
