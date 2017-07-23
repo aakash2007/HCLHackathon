@@ -61,7 +61,8 @@ module.exports = function(bot) {
 		    	} else {
 		    		session.send('**%s** is suitable for your parcel', suitablePackage);
 		    		session.send("![%s](%s)", suitablePackage,imglk);
-					builder.Prompts.choice(session, "Which region?", "UK|EU|NONEU|US|REST", builder.ListStyle.button);
+		    		session.send("Let's see what's the shipping cost from UK")
+					builder.Prompts.choice(session, "Which region do you want to ship to?", "United Kingdom|Europe EU|Europe Non-EU|USA,Canada & Mexico|Rest of World", builder.ListStyle.button);
 		    	}
     		})
     	},
@@ -70,6 +71,7 @@ module.exports = function(bot) {
     			let anskey = session.dialogData.anskey
     			let region = results.response.entity
     			let data = packaging[anskey]
+    			session.send("Delivery Time: %s", data.shptime[region])
     			data = data.price
     			session.send("This costs %s euros", data[region])
     		}

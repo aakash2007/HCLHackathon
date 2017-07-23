@@ -5,11 +5,18 @@
 		"b": 35,
 		"h": 2,
 		"price": {
-			"UK": "7.95",
-			"EU": "26.95",
-			"NONEU": "28.95",
-			"US": "30.95",
-			"REST": "38.95"
+			"United Kingdom": "7.95",
+			"Europe EU": "26.95",
+			"Europe Non-EU": "28.95",
+			"USA,Canada & Mexico": "30.95",
+			"Rest of World": "38.95"
+		},
+		"shptime": {
+			"United Kingdom": "1 Working Day",
+			"Europe EU": "1-2 Working Day",
+			"Europe Non-EU": "1-2 Working Day",
+			"USA,Canada & Mexico": "1-3 Working Day",
+			"Rest of World": "1-4 Working Day"
 		},
 		"imglink": "https://parcel.dhl.co.uk/repository/package_size/dhl_envelope_1_carousel_NEW.jpg"
 	},
@@ -19,11 +26,18 @@
 		"b": 18,
 		"h": 10,
 		"price": {
-			"UK": "13.95",
-			"EU": "34.95",
-			"NONEU": "36.95",
-			"US": "37.95",
-			"REST": "49.95"
+			"United Kingdom": "13.95",
+			"Europe EU": "34.95",
+			"Europe Non-EU": "36.95",
+			"USA,Canada & Mexico": "37.95",
+			"Rest of World": "49.95"
+		},
+		"shptime": {
+			"United Kingdom": "1 Working Day",
+			"Europe EU": "1-2 Working Day",
+			"Europe Non-EU": "1-2 Working Day",
+			"USA,Canada & Mexico": "1-3 Working Day",
+			"Rest of World": "1-4 Working Day"
 		},
 		"imglink":"https://parcel.dhl.co.uk/repository/package_size/dhl_box_size_2_carousel_NEW.jpg"
 	},
@@ -33,11 +47,18 @@
 		"b": 32,
 		"h": 10,
 		"price": {
-			"UK": "15.95",
-			"EU": "38.95",
-			"NONEU": "39.95",
-			"US": "40.95",
-			"REST": "57.95"
+			"United Kingdom": "15.95",
+			"Europe EU": "38.95",
+			"Europe Non-EU": "39.95",
+			"USA,Canada & Mexico": "40.95",
+			"Rest of World": "57.95"
+		},
+		"shptime": {
+			"United Kingdom": "1 Working Day",
+			"Europe EU": "1-2 Working Day",
+			"Europe Non-EU": "1-2 Working Day",
+			"USA,Canada & Mexico": "1-3 Working Day",
+			"Rest of World": "1-4 Working Day"
 		},
 		"imglink":"https://parcel.dhl.co.uk/repository/package_size/dhl_box_size_3_carousel_NEW.jpg"
 	},
@@ -47,11 +68,18 @@
 		"b": 32,
 		"h": 18,
 		"price": {
-			"UK": "16.95",
-			"EU": "45.95",
-			"NONEU": "49.95",
-			"US": "55.95",
-			"REST": "78.95"
+			"United Kingdom": "16.95",
+			"Europe EU": "45.95",
+			"Europe Non-EU": "49.95",
+			"USA,Canada & Mexico": "55.95",
+			"Rest of World": "78.95"
+		},
+		"shptime": {
+			"United Kingdom": "1 Working Day",
+			"Europe EU": "1-2 Working Day",
+			"Europe Non-EU": "1-2 Working Day",
+			"USA,Canada & Mexico": "1-3 Working Day",
+			"Rest of World": "1-4 Working Day"
 		},
 		"imglink":"https://parcel.dhl.co.uk/repository/package_size/dhl_box_size_4_carousel_NEW.jpg"
 	},
@@ -61,11 +89,18 @@
 		"b": 32,
 		"h": 34,
 		"price": {
-			"UK": "19.95",
-			"EU": "67.95",
-			"NONEU": "79.95",
-			"US": "89.95",
-			"REST": "138.95"
+			"United Kingdom": "19.95",
+			"Europe EU": "67.95",
+			"Europe Non-EU": "79.95",
+			"USA,Canada & Mexico": "89.95",
+			"Rest of World": "138.95"
+		},
+		"shptime": {
+			"United Kingdom": "1 Working Day",
+			"Europe EU": "1-2 Working Day",
+			"Europe Non-EU": "1-2 Working Day",
+			"USA,Canada & Mexico": "1-3 Working Day",
+			"Rest of World": "1-4 Working Day"
 		},
 		"imglink":"https://parcel.dhl.co.uk/repository/package_size/dhl_box_size_5_carousel_NEW.jpg"
 	},
@@ -75,11 +110,18 @@
 		"b": 36,
 		"h": 37,
 		"price": {
-			"UK": "21.95",
-			"EU": "88.95",
-			"NONEU": "104.95",
-			"US": "109.95",
-			"REST": "172.95"
+			"United Kingdom": "21.95",
+			"Europe EU": "88.95",
+			"Europe Non-EU": "104.95",
+			"USA,Canada & Mexico": "109.95",
+			"Rest of World": "172.95"
+		},
+		"shptime": {
+			"United Kingdom": "1 Working Day",
+			"Europe EU": "1-2 Working Day",
+			"Europe Non-EU": "1-2 Working Day",
+			"USA,Canada & Mexico": "1-3 Working Day",
+			"Rest of World": "1-4 Working Day"
 		},
 		"imglink":"https://parcel.dhl.co.uk/repository/package_size/dhl_box_size_6_carousel_NEW.jpg"
 	},
@@ -89,11 +131,18 @@
 		"b": 40,
 		"h": 37,
 		"price": {
-			"UK": "23.95",
-			"EU": "105.95",
-			"NONEU": "119.95",
-			"US": "125.95",
-			"REST": "199.95"
+			"United Kingdom": "23.95",
+			"Europe EU": "105.95",
+			"Europe Non-EU": "119.95",
+			"USA,Canada & Mexico": "125.95",
+			"Rest of World": "199.95"
+		},
+		"shptime": {
+			"United Kingdom": "1 Working Day",
+			"Europe EU": "1-2 Working Day",
+			"Europe Non-EU": "1-2 Working Day",
+			"USA,Canada & Mexico": "1-3 Working Day",
+			"Rest of World": "1-4 Working Day"
 		},
 		"imglink":"https://parcel.dhl.co.uk/repository/package_size/dhl_box_size_7_carousel_NEW.jpg"
 	}
