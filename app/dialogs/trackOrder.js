@@ -19,7 +19,7 @@ module.exports = function(bot) {
     bot.dialog('/trackOrder', [
 
         function (session, args, next) {
-            builder.Prompts.number(session, 'What\'s your tracking ID?');
+            builder.Prompts.text(session, 'What\'s your tracking ID?');
         },
         function(session, results){
             let trackid = results.response;
